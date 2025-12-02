@@ -1,398 +1,1155 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TS. Nguyễn Mạnh Ngọc Bảo | Trang Web Cá Nhân</title>
-    <link rel="icon" href="/favicon.ico" type="image/svg+xml" />
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://019ade57-4a06-7d67-b567-d790a2885349.arena.site/" />
-    <meta property="og:title" content="TS. Nguyễn Mạnh Ngọc Bảo | Trang Web Cá Nhân" />
-    <meta property="og:description" content="Built with LMArena - Content is user-generated and unverified" />
-    <!-- Đổi sang ảnh chân dung của thầy -->
-    <meta
-      property="og:image"
-      content="https://drive.google.com/uc?export=view&id=1MSWEwEKwoUpo5q5p7sqpssGa0toAf6k3"
-    />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://019ade57-4a06-7d67-b567-d790a2885349.arena.site/" />
-    <meta property="twitter:title" content="TS. Nguyễn Mạnh Ngọc Bảo | Trang Web Cá Nhân" />
-    <meta property="twitter:description" content="Built with LMArena - Content is user-generated and unverified" />
-    <!-- Đổi sang ảnh chân dung của thầy -->
-    <meta
-      property="twitter:image"
-      content="https://drive.google.com/uc?export=view&id=1MSWEwEKwoUpo5q5p7sqpssGa0toAf6k3"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
-    <script>
-      const REPORT_SURVEY_ID = "019a46ef-f7dd-0000-58be-14fbb8b91d15";
-      const MESSAGE_ID = "019ade57-4a06-7d67-b567-d790a2885349";
-      const EVALUATION_SESSION_ID = "019ade4f-90a6-7b8e-b9d9-779cf7b518d5";
-      const getStorageKey = (prefix) => `${prefix}_${MESSAGE_ID}`;
-      const hasStorageKey = (prefix) => !!localStorage.getItem(getStorageKey(prefix));
-
-      // snippet below comes from posthog's documentation for running in html pages
-      // prettier-ignore
-      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-
-      const POSTHOG_API_KEY = "phc_LG7IJbVJqBsk584rbcKca0D5lV2vHguiijDrVji7yDM";
-      if (POSTHOG_API_KEY) {
-        posthog.init(POSTHOG_API_KEY, {
-          api_host: "/ph",
-          ui_host: "https://us.posthog.com",
-          person_profiles: "identified_only",
-          autocapture: false,
-          disable_session_recording: true,
-          before_send: (event) => {
-            if (event.event === "survey sent") {
-              // On the first survey answer sent, also send the report event
-              if (!hasStorageKey("code_reported")) {
-                localStorage.setItem(getStorageKey("code_reported"), "true");
-                posthog.capture?.("code_preview_banner_report");
-              }
-              // When the survey is completed, hide the report button
-              if (event.properties?.$survey_completed === true) {
-                localStorage.setItem(getStorageKey("survey_completed"), "true");
-                document.querySelector(".report-content-btn").style.display = "none";
-              }
-            }
-            return event;
-          },
-        });
-        posthog.register({ message_id: MESSAGE_ID, evaluation_session_id: EVALUATION_SESSION_ID });
-      }
-    </script>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trang web cá nhân của TS. Nguyễn Mạnh Ngọc Bảo - Giảng viên, Nhà nghiên cứu">
+    <title>TS. Nguyễn Mạnh Ngọc Bảo | Trang cá nhân</title>
+    
+    <!-- ===== CSS NHÚNG ===== -->
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      a {
-        text-decoration: none;
-      }
-
-      html,
-      body {
-        height: 100%;
-        overflow: hidden;
-      }
-
-      body {
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          "Helvetica Neue",
-          Arial,
-          sans-serif;
-        display: flex;
-        flex-direction: column;
-        background: #f5f5f5;
-      }
-
-      /* Banner styles */
-      .floating-banner {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        z-index: 1000;
-        animation: slideIn 0.3s ease-out;
-        display: flex;
-        align-items: center;
-        will-change: transform, opacity;
-      }
-
-      @keyframes slideIn {
-        from {
-          transform: translateY(100px) translateZ(0);
-          opacity: 0;
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        to {
-          transform: translateY(0) translateZ(0);
-          opacity: 1;
+
+        html {
+            scroll-behavior: smooth;
         }
-      }
 
-      .floating-banner.dismissed {
-        animation: slideOut 0.3s ease-out forwards;
-      }
-
-      @keyframes slideOut {
-        to {
-          transform: translateY(100px) translateZ(0);
-          opacity: 0;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #fafbfc;
         }
-      }
 
-      .banner-padding {
-        padding: 10px 16px;
-      }
-
-      .banner-link-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        cursor: pointer;
-      }
-
-      .banner-logo {
-        display: flex;
-        align-items: center;
-        color: #2d2d2d;
-        flex-shrink: 0;
-      }
-
-      .banner-logo svg {
-        height: 28px;
-        width: auto;
-      }
-
-      .banner-text-container {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-
-      .banner-text {
-        margin: 0;
-        white-space: nowrap;
-      }
-
-      .banner-upper-text {
-        color: #151617;
-        font-size: 14px;
-      }
-
-      .banner-lower-text {
-        color: #878c9f;
-        font-size: 10px;
-      }
-
-      .banner-action-container {
-        border-left: 1px solid rgba(45, 47, 53, 0.08);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        align-self: stretch;
-      }
-
-      .action-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: none;
-        border: none;
-        color: #999;
-        cursor: pointer;
-        transition: color 0.2s;
-        flex-shrink: 0;
-      }
-
-      .action-btn:hover {
-        color: #2d2d2d;
-      }
-
-      /* Iframe container styles */
-      .iframe-container {
-        flex: 1;
-        position: relative;
-        background: white;
-        overflow: hidden;
-        min-height: 0;
-      }
-
-      iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-        display: block;
-      }
-
-      /* Ảnh chân dung overlay */
-      .avatar-container {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        z-index: 10;
-      }
-
-      .avatar-photo {
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid #ffffff;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      @media (max-width: 600px) {
-        .avatar-photo {
-          width: 100px;
-          height: 100px;
+        /* ===== CONTAINER CHÍNH ===== */
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-      }
+
+        /* ===== HEADER & NAVBAR ===== */
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .btn-cv {
+            background: #2563eb;
+            color: #fff !important;
+            padding: 8px 18px;
+            border-radius: 6px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-cv:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile menu button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* ===== HERO SECTION - GIỚI THIỆU ===== */
+        #about {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e8f4f8 100%);
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Ảnh chân dung bo tròn */
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #e0e0e0;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .hero-content h1 {
+            font-size: 2.2rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .hero-content .title {
+            font-size: 1.15rem;
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .hero-content .affiliation {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .hero-content .affiliation span {
+            display: block;
+        }
+
+        .intro-text {
+            max-width: 800px;
+            font-size: 1.05rem;
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        /* Social links / Icon liên kết */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #475569;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #2563eb;
+            color: #fff;
+            border-color: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37,99,235,0.3);
+        }
+
+        .social-links svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ===== SECTION CHUNG ===== */
+        section {
+            padding: 80px 0;
+        }
+
+        section:nth-child(even) {
+            background: #fff;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #2563eb;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ===== LÝ LỊCH KHOA HỌC ===== */
+        #profile {
+            background: #fff;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .profile-card {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .profile-card h3 {
+            font-size: 1.25rem;
+            color: #1e293b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-card h3 svg {
+            width: 24px;
+            height: 24px;
+            color: #2563eb;
+        }
+
+        .profile-card ul {
+            list-style: none;
+        }
+
+        .profile-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .profile-card li:last-child {
+            border-bottom: none;
+        }
+
+        .profile-card li strong {
+            color: #1e293b;
+        }
+
+        /* Research interests - full width */
+        .research-interests {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+            border-left-color: #10b981;
+        }
+
+        .research-interests h3 svg {
+            color: #10b981;
+        }
+
+        .research-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .research-list li {
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-bottom: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* ===== CÔNG BỐ KHOA HỌC ===== */
+        #publications {
+            background: #f8fafc;
+        }
+
+        .pub-category {
+            margin-bottom: 40px;
+        }
+
+        .pub-category h3 {
+            font-size: 1.2rem;
+            color: #2563eb;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .publication-item {
+            background: #fff;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #10b981;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .publication-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .publication-item p {
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== GIẢNG DẠY ===== */
+        #teaching {
+            background: #fff;
+        }
+
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .course-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-card h4 {
+            color: #1e293b;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+        }
+
+        .course-card .level {
+            display: inline-block;
+            background: #dbeafe;
+            color: #2563eb;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .course-card .role {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .teaching-philosophy {
+            background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+            padding: 35px;
+            border-radius: 12px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .teaching-philosophy h3 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .teaching-philosophy p {
+            color: #475569;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        /* ===== DỰ ÁN - HỢP TÁC ===== */
+        #projects {
+            background: #f8fafc;
+        }
+
+        .project-item {
+            background: #fff;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .project-item h4 {
+            color: #1e293b;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .project-meta svg {
+            width: 16px;
+            height: 16px;
+            color: #2563eb;
+        }
+
+        .collaboration-invite {
+            background: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
+            color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .collaboration-invite h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .collaboration-invite p {
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* ===== LIÊN HỆ ===== */
+        #contact {
+            background: #fff;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            color: #1e293b;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item svg {
+            width: 22px;
+            height: 22px;
+            color: #2563eb;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .contact-item div {
+            color: #475569;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: #1e293b;
+            margin-bottom: 3px;
+        }
+
+        .contact-item a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Form liên hệ */
+        .contact-form h3 {
+            color: #1e293b;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #475569;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #1e293b;
+            color: #94a3b8;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            #about {
+                padding: 120px 0 60px;
+            }
+
+            .teaching-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-links a {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 12px 15px;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .profile-photo {
+                width: 140px;
+                height: 140px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .profile-card,
+            .project-item,
+            .teaching-philosophy {
+                padding: 20px;
+            }
+        }
     </style>
-  </head>
-  <body data-ryu-obtrusive-scrollbars="false">
-    <svg style="display: none">
-      <symbol
-        id="icon-flag"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path
-          d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"
-        />
-      </symbol>
-      <symbol
-        id="icon-close"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M18 6 6 18" />
-        <path d="m6 6 12 12" />
-      </symbol>
-    </svg>
+</head>
+<body>
 
-    <div class="floating-banner" id="floating-banner">
-      <a
-        href="https://lmarena.ai/code"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="banner-link-wrapper banner-padding"
-        onclick="onCodePreviewBannerCTAClicked(event)"
-      >
-        <div class="banner-logo">
-          <svg
-            width="325.235"
-            height="300"
-            viewBox="0 0 325.235 300"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g clipPath="url(#clip0_mark)">
-              <path
-                d="M325.196 45.8314C325.196 45.7153 325.196 45.5991 325.196 45.483V45.3282C325.196 41.554 323.319 38.8249 322.254 37.5088C321.035 35.9991 319.564 34.7411 318.209 33.7153C315.461 31.6443 311.822 29.5927 307.68 27.5991C299.3 23.5733 287.571 19.1991 273.365 15.1346C244.952 7.04431 205.836 -0.000854492 162.617 -0.000854492C119.399 -0.000854492 80.2636 7.04431 51.8317 15.154C37.6447 19.1991 25.8965 23.5927 17.5159 27.6185C13.374 29.612 9.73537 31.6637 6.98702 33.7346C5.63219 34.7604 4.16124 36.0185 2.9419 37.5282C1.91611 38.8249 0.0387092 41.554 0.0387092 45.3282C0.0387092 45.3475 0.0387092 45.3862 0.0387092 45.4056C0.0387092 45.4249 0.0387092 45.4637 0.0387092 45.483C0.0387092 45.5991 0.0387092 45.7153 0.0387092 45.8314H0V274.838H0.0387092C0.0387092 278.844 2.0903 281.689 3.67738 283.277C5.2451 284.844 7.04508 285.889 8.53539 286.625C11.5547 288.115 15.3869 289.296 19.4901 290.264C27.8513 292.257 39.5608 293.98 53.5349 295.393C81.6184 298.238 120.192 299.98 162.637 299.98C205.082 299.98 243.636 298.238 271.739 295.393C285.713 293.98 297.422 292.257 305.784 290.264C309.887 289.277 313.719 288.115 316.738 286.625C318.229 285.889 320.029 284.825 321.596 283.277C323.183 281.689 325.235 278.844 325.235 274.838H325.274V45.8314H325.235H325.196ZM173.243 186.889V160.741C173.243 152.322 176.282 144.038 182.262 138.135C187.566 132.889 194.591 129.696 202.294 129.696C212.107 129.696 220.817 134.864 226.275 142.877C230.01 148.354 231.772 154.954 231.772 161.593V185.186C214.043 186.154 194.243 186.773 173.224 186.928L173.243 186.889ZM173.243 100.741C173.243 92.3217 176.282 84.0379 182.262 78.1346C187.566 72.8895 194.591 69.6959 202.294 69.6959C212.107 69.6959 220.817 74.8637 226.275 82.8766C230.01 88.354 231.772 94.954 231.772 101.593V107.767C214.043 108.735 194.243 109.354 173.224 109.509V100.78L173.243 100.741ZM301.177 177.27C294.093 179.051 283.429 180.754 269.745 182.206C263.997 182.825 257.784 183.386 251.145 183.889V155.225C251.145 145.412 255.481 135.909 263.397 130.083C268.042 126.677 273.519 124.625 279.248 124.625C282.287 124.625 285.229 125.128 287.977 126.077C298.874 129.793 305.9 140.457 305.9 151.973V175.877C304.738 176.283 303.19 176.767 301.197 177.27H301.177ZM251.145 97.5862C251.145 88.4508 254.784 79.5282 261.694 73.5475C266.552 69.3475 272.494 66.7733 278.745 66.7733C285.926 66.7733 292.468 69.754 297.422 74.6508C303.035 80.2056 305.88 87.9669 305.88 95.8637V98.4572C304.719 98.8637 303.171 99.3475 301.177 99.8508C294.093 101.631 283.429 103.335 269.745 104.786C263.997 105.406 257.784 105.967 251.145 106.47V97.5862ZM47.9027 66.9669C59.0509 66.9669 68.6895 72.154 73.3734 81.3669C75.212 84.9862 75.9862 89.0314 75.9862 93.0959V106.606C68.6315 106.064 61.7799 105.444 55.4897 104.786C41.806 103.335 31.1416 101.631 24.0578 99.8508C22.0643 99.3475 20.5159 98.883 19.3546 98.4766C19.4514 81.0766 32.1867 66.9862 47.8833 66.9862L47.9027 66.9669ZM95.3408 185.264V161.612C95.3408 155.631 96.7344 149.67 99.8118 144.541C105.173 135.599 114.386 129.696 124.857 129.696C132.54 129.696 139.547 132.87 144.831 138.077C150.831 143.98 153.869 152.244 153.869 160.664V186.909C132.908 186.773 113.108 186.212 95.3215 185.264H95.3408ZM153.889 109.489C132.928 109.354 113.128 108.793 95.3408 107.844V101.612C95.3408 95.6314 96.7344 89.6701 99.8118 84.5411C105.173 75.5991 114.386 69.6959 124.857 69.6959C132.54 69.6959 139.547 72.8701 144.831 78.0766C150.831 83.9798 153.869 92.2443 153.869 100.664V109.489H153.889ZM19.3933 154.877C19.3933 138.173 32.1674 124.625 47.9414 124.625C53.6704 124.625 59.1284 126.657 63.7541 130.064C71.6701 135.87 76.0056 145.354 76.0056 155.167V184.044C68.6508 183.502 61.7993 182.883 55.509 182.225C41.8253 180.773 31.1609 179.07 24.0771 177.289C22.0836 176.786 20.5352 176.322 19.374 175.896L19.4127 154.896L19.3933 154.877ZM19.3546 274.838V274.064C19.374 274.315 19.3933 274.567 19.3933 274.838H19.3546ZM19.3933 234.231C19.3933 217.528 32.1674 203.98 47.9414 203.98C53.6704 203.98 59.1284 206.012 63.7541 209.418C71.6701 215.225 76.0056 224.709 76.0056 234.522V277.896C68.6508 277.373 61.7799 276.793 55.4897 276.154C41.806 274.76 31.1029 273.154 23.9997 271.451C22.0643 270.986 20.5352 270.541 19.374 270.173L19.4127 234.251L19.3933 234.231ZM95.3408 279.057V239.012C95.3408 233.031 96.7344 227.07 99.8118 221.941C105.173 212.999 114.386 207.096 124.857 207.096C132.54 207.096 139.547 210.27 144.831 215.477C150.831 221.38 153.869 229.644 153.869 238.064V280.625C132.908 280.509 113.108 279.948 95.3215 279.057H95.3408ZM173.243 280.606V238.064C173.243 229.664 176.282 221.38 182.282 215.477C187.585 210.27 194.572 207.096 202.256 207.096C212.746 207.096 221.959 212.999 227.32 221.941C230.397 227.07 231.791 233.031 231.791 239.012V278.941C214.062 279.87 194.262 280.431 173.243 280.586V280.606ZM305.88 274.838H305.842C305.842 274.567 305.842 274.315 305.88 274.064V274.838ZM301.255 271.451C294.151 273.154 283.448 274.78 269.765 276.154C264.016 276.735 257.784 277.277 251.145 277.76V234.58C251.145 224.767 255.481 215.264 263.397 209.438C268.042 206.031 273.519 203.98 279.248 203.98C282.287 203.98 285.229 204.483 287.977 205.431C298.874 209.148 305.9 219.812 305.9 231.328V270.154C304.738 270.541 303.209 270.967 301.274 271.431L301.255 271.451Z"
-                fill="currentColor"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_mark">
-                <rect width="325.235" height="300" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
+    <!-- ===== HEADER & THANH MENU ===== -->
+    <header>
+        <nav class="navbar">
+            <!-- Logo chữ -->
+            <a href="#about" class="logo">TS. Nguyễn Mạnh Ngọc Bảo</a>
+            
+            <!-- Nút menu mobile -->
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Danh sách menu -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#profile">Lý lịch khoa học</a></li>
+                <li><a href="#publications">Công bố khoa học</a></li>
+                <li><a href="#teaching">Giảng dạy</a></li>
+                <li><a href="#projects">Dự án – Hợp tác</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+                <li><a href="cv.pdf" class="btn-cv" target="_blank">Tải CV</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== PHẦN GIỚI THIỆU (Hero Section) ===== -->
+    <section id="about">
+        <div class="container">
+            <div class="hero-content">
+                <!-- Ảnh chân dung -->
+                <img 
+                    src="https://drive.google.com/thumbnail?id=1MSWEwEKwoUpo5q5p7sqpssGa0toAf6k3&sz=w400" 
+                    alt="TS. Nguyễn Mạnh Ngọc Bảo" 
+                    class="profile-photo"
+                >
+                
+                <!-- Họ tên -->
+                <h1>TS. Nguyễn Mạnh Ngọc Bảo</h1>
+                
+                <!-- Chức danh -->
+                <p class="title">Tổng giám đốc | Giảng viên</p>
+                
+                <!-- Đơn vị công tác -->
+                <p class="affiliation">
+                    <span>Công ty TNHH MTV An Bảo Đặc khu Phú Quốc</span>
+                    <span>Khoa Khoa học Ứng dụng và Công nghệ, Trường Đại học Nguyễn Tất Thành</span>
+                </p>
+                
+                <!-- Đoạn giới thiệu ngắn -->
+                <p class="intro-text">
+                    Tôi là Tiến sĩ Nguyễn Mạnh Ngọc Bảo, Tổng giám đốc Công ty TNHH MTV An Bảo đặc khu Phú Quốc, kiêm giảng viên trường đại học Nguyễn Tất Thành và là nhà nghiên cứu trong lĩnh vực Công nghệ thực phẩm và logistics, quản lý chuỗi cung ứng và phát triển bền vững. Mối quan tâm nghiên cứu của tôi tập trung vào định hướng ứng dụng phát triển những sản phẩm thực phẩm bền vững, tận dụng phụ phẩm trong nông nghiệp để phát triển sản phẩm mới, cải thiện giá trị sản phẩm. Thêm vào đó, tôi có kinh nghiệm trong logistics xanh, chuỗi cung ứng nông sản tại Đồng bằng sông Cửu Long và mô hình phát triển bền vững cho các đảo du lịch như Phú Quốc.
+                </p>
+                
+                <!-- Icon liên kết nhanh -->
+                <div class="social-links">
+                    <a href="mailto:nmnbao@ntt.edu.vn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        Email
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=lygtBUwAAAAJ&hl=vi" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 24a7 7 0 110-14 7 7 0 010 14zm0-24L0 9.5l4.838 3.94A8 8 0 0112 9a8 8 0 017.162 4.44L24 9.5 12 0z"/>
+                        </svg>
+                        Google Scholar
+                    </a>
+                    <a href="https://orcid.org/0009-0007-7609-9616" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378a.815.815 0 110 1.63.815.815 0 010-1.63zm-.625 3.056h1.25v8.505h-1.25V7.434zm3.625 0h3.379c3.057 0 4.502 2.096 4.502 4.252 0 2.398-1.727 4.253-4.502 4.253h-3.379V7.434zm1.25 1.055v6.395h2.003c2.241 0 3.378-1.412 3.378-3.198 0-1.78-1.137-3.197-3.378-3.197h-2.003z"/>
+                        </svg>
+                        ORCID
+                    </a>
+                    <a href="https://www.linkedin.com/in/bao-nguyen-54861337a" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="banner-text-container">
-          <p class="banner-text banner-upper-text">Built with LMArena</p>
-          <p class="banner-text banner-lower-text">Content is user-generated and unverified</p>
+    </section>
+
+    <!-- ===== PHẦN LÝ LỊCH KHOA HỌC ===== -->
+    <section id="profile">
+        <div class="container">
+            <h2 class="section-title">Lý lịch khoa học</h2>
+            
+            <div class="profile-grid">
+                <!-- Học vấn -->
+                <div class="profile-card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/>
+                        </svg>
+                        Học vấn
+                    </h3>
+                    <ul>
+                        <li><strong>Tiến sĩ Quản lý Công nghệ</strong><br>Trường Đại học Akamai, Hoa Kỳ</li>
+                        <li><strong>Tiến sĩ Quản lý</strong><br>Trường Đại học Quốc tế Châu Âu, Pháp</li>
+                        <li><strong>Thạc sĩ Phát triển sản phẩm Công-Nông nghiệp</strong><br>Đại học Kasetsart, Thái Lan</li>
+                        <li><strong>Kỹ sư Công nghệ Thực phẩm tiên tiến</strong><br>Trường Đại học Nông Lâm TP.HCM</li>
+                        <li><strong>Cử nhân ngành Luật</strong><br>Đại học Đà Nẵng</li>
+                        <li><strong>Cử nhân Ngôn ngữ Anh</strong><br>Đại học Đà Nẵng</li>
+                        <li><strong>Cử nhân Kế Toán</strong><br>Đại học Đà Nẵng</li>
+                    </ul>
+                </div>
+
+                <!-- Quá trình công tác -->
+                <div class="profile-card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        Quá trình công tác
+                    </h3>
+                    <ul>
+                        <li><strong>2023 – nay:</strong> Giảng viên, Khoa Khoa học Ứng dụng và Công nghệ, Trường Đại học Nguyễn Tất Thành Việt Nam</li>
+                        <li><strong>2019 – nay:</strong> Tổng giám đốc, lĩnh vực Xây dựng, Xăng Dầu, Nghiên cứu khoa học, Du lịch, Kinh doanh nhà hàng khách sạn resort, Công ty TNHH MTV An Bảo - Đặc khu Phú Quốc</li>
+                        <li><strong>2025 – nay:</strong> Nghiên cứu sinh, ngành Vận tải và Logistics, Đại học Khoa học công nghệ Malaysia</li>
+                        <li><strong>2025 – nay:</strong> Nghiên cứu sinh, ngành Công nghệ thực phẩm, Đại học Cần Thơ</li>
+                        <li><strong>2019 – 2022:</strong> Nhân viên kiểm nghiệm, Kiểm nghiệm thực phẩm, môi trường, nghiên cứu khoa học, Trung tâm Ứng Dụng Khoa học Công nghệ và Môi trường - CN Phú Quốc</li>
+                    </ul>
+                </div>
+
+                <!-- Hướng nghiên cứu chính -->
+                <div class="profile-card research-interests">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                        Hướng nghiên cứu chính
+                    </h3>
+                    <ul class="research-list">
+                        <li>Phát triển sản phẩm mới trong thực phẩm, tận dụng phụ phẩm trong nông nghiệp để phát triển sản phẩm bền vững</li>
+                        <li>Phân tích và tối ưu chuỗi cung ứng nông sản, đặc biệt là sầu riêng vùng Đồng bằng sông Cửu Long</li>
+                        <li>Phát triển hạ tầng và dịch vụ logistics hỗ trợ du lịch và thương mại tại các đảo như Phú Quốc</li>
+                        <li>Ứng dụng công nghệ số và dữ liệu lớn trong quản trị chuỗi cung ứng</li>
+                        <li>Kết nối logistics – du lịch – bất động sản trong phát triển địa phương bền vững</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </a>
-      <div class="banner-action-container banner-padding">
-        <button
-          class="action-btn report-content-btn"
-          style="display: none"
-          onclick="reportContent(event)"
-          aria-label="Report content"
-        >
-          <svg class="report-icon" width="20" height="20"><use href="#icon-flag" /></svg>
-        </button>
-        <button class="action-btn" onclick="dismissBanner(event)" aria-label="Close banner">
-          <svg width="20" height="20"><use href="#icon-close" /></svg>
-        </button>
-      </div>
-    </div>
+    </section>
 
-    <div class="iframe-container">
-      <!-- Ảnh chân dung của thầy -->
-      <div class="avatar-container">
-        <img
-          src="https://drive.google.com/uc?export=view&id=1MSWEwEKwoUpo5q5p7sqpssGa0toAf6k3"
-          alt="TS. Nguyễn Mạnh Ngọc Bảo"
-          class="avatar-photo"
-        />
-      </div>
+    <!-- ===== PHẦN CÔNG BỐ KHOA HỌC ===== -->
+    <section id="publications">
+        <div class="container">
+            <h2 class="section-title">Công bố khoa học</h2>
+            
+            <!-- Bài báo quốc tế -->
+            <div class="pub-category">
+                <h3>Bài báo quốc tế (ISI/Scopus)</h3>
+                
+                <div class="publication-item">
+                    <p>Nguyen, B. M. N., & Pirak, T. (2019). Physicochemical properties and antioxidant activities of white dragon fruit peel pectin extracted with conventional and ultrasound-assisted extraction. <em>Cogent Food & Agriculture</em>, 5(1), 1633076.</p>
+                </div>
+                
+                <div class="publication-item">
+                    <p>Thai, L. T., Nguyen, A. T., Nguyen, B. M. N., Truong, H. T., & Le, A. Q. (2025). Role of mangrovian biodiversity, ecological distribution and abundance, for promising sea reclamation: A case study in sea west of Kien Giang Province. In <em>Geography, Earth Science and Environment: Research Highlights</em> (Vol. 4, pp. 166–194). BP International.</p>
+                </div>
+                
+                <div class="publication-item">
+                    <p>Thai, L. T., Danh, M., Dang, N. T. H., Ngo, T. V., Nguyen, B. M. N., & Truong, H. T. (2024). Researching the structure of species to propose exploitation the potential to expand natural land by polder from mangroves in the Western Mekong Delta of Vietnam. <em>International Journal of Membrane Science and Technology</em>, 11(1), 857–870.</p>
+                </div>
+                
+                <div class="publication-item">
+                    <p>Thai, T. T., & Nguyen, B. M. N. (2024). Researching the structure of species to propose exploitation the potential for food and medicine and to expand natural land by polder from mangroves in the Western Mekong Delta of Vietnam. <em>Preprints</em>, 2024, 202401.1552.</p>
+                </div>
+                
+                <div class="publication-item">
+                    <p>Thai, L. T., Danh, M., Dang, N. T. H., Ngo, T. V., Nguyen, B. M. N., Truong, H. T., & Le, A. Q. (2024). Researching the structure of species to propose exploitation the potential to expand natural land by polder from mangroves in the Western Mekong Delta of Vietnam. <em>Research Square</em> (preprint), doi:10.21203/rs.3.rs-5309474.v1.</p>
+                </div>
+                
+                <div class="publication-item">
+                    <p>Dang, N. T. H., Thai, L. T., Danh, M., Ngo, T. V., & Nguyen, B. M. N. (2025). Biochar of reed (Phragmites autralis) on representative locations in Mekong Delta of Vietnam. <em>Journal of Ecohumanism</em>, 4(1), 499–516.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <iframe
-        id="preview-iframe"
-        src="https://019ade57-4a06-7d67-b567-d790a2885349.arena.site/?embed=true"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-popups allow-popups-to-escape-sandbox allow-downloads allow-top-navigation-by-user-activation"
-        allow="accelerometer; autoplay; camera; encrypted-media; fullscreen; geolocation; gyroscope; microphone; midi; clipboard-read; clipboard-write; usb; vr; xr-spatial-tracking; screen-wake-lock; magnetometer; ambient-light-sensor; battery; gamepad; picture-in-picture; display-capture; bluetooth"
-        referrerpolicy="origin-when-cross-origin"
-      ></iframe>
-    </div>
+    <!-- ===== PHẦN GIẢNG DẠY ===== -->
+    <section id="teaching">
+        <div class="container">
+            <h2 class="section-title">Giảng dạy</h2>
+            
+            <!-- Danh sách học phần -->
+            <div class="teaching-grid">
+                <div class="course-card">
+                    <span class="level">Bậc Đại học</span>
+                    <h4>Đánh giá cảm quan, phát triển sản phẩm mới</h4>
+                    <p class="role">Giảng viên phụ trách chính</p>
+                </div>
+                
+                <div class="course-card">
+                    <span class="level">Bậc Đại học</span>
+                    <h4>Logistics trong kinh doanh nông sản thực phẩm</h4>
+                    <p class="role">Giảng viên phụ trách chính</p>
+                </div>
+                
+                <div class="course-card">
+                    <span class="level">Bậc Đại học</span>
+                    <h4>Quản trị vận tải và phân phối</h4>
+                    <p class="role">Đồng giảng</p>
+                </div>
+                
+                <div class="course-card">
+                    <span class="level">Bậc Sau đại học</span>
+                    <h4>Phân tích dữ liệu trong logistics và chuỗi cung ứng</h4>
+                    <p class="role">Giảng viên phụ trách</p>
+                </div>
+                
+                <div class="course-card">
+                    <span class="level">Bậc Sau đại học</span>
+                    <h4>Phương pháp nghiên cứu khoa học trong kinh doanh và logistics</h4>
+                    <p class="role">Giảng viên phụ trách</p>
+                </div>
+            </div>
+            
+            <!-- Triết lý giảng dạy -->
+            <div class="teaching-philosophy">
+                <h3>Quan điểm & Triết lý giảng dạy</h3>
+                <p>"Tôi ưu tiên phương pháp giảng dạy gắn với thực tiễn doanh nghiệp, khuyến khích sinh viên tự học, tự nghiên cứu và làm việc nhóm. Các tình huống thực tế từ chuỗi cung ứng nông sản, logistics tại đảo Phú Quốc và vùng Đồng bằng sông Cửu Long được tích hợp vào bài giảng nhằm giúp người học hiểu sâu vấn đề và rèn luyện năng lực giải quyết vấn đề."</p>
+            </div>
+        </div>
+    </section>
 
+    <!-- ===== PHẦN DỰ ÁN - HỢP TÁC ===== -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Dự án – Hợp tác</h2>
+            
+            <!-- Danh sách dự án -->
+            <div class="project-item">
+                <h4>Phân tích và tối ưu chuỗi cung ứng sầu riêng vùng Đồng bằng sông Cửu Long</h4>
+                <div class="project-meta">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        Vai trò: Chủ nhiệm đề tài
+                    </span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        Thời gian: 2022–2024
+                    </span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Nguồn tài trợ: Quỹ nghiên cứu cấp Bộ
+                    </span>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <h4>Phát triển mô hình logistics xanh hỗ trợ du lịch bền vững tại đảo Phú Quốc</h4>
+                <div class="project-meta">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        Vai trò: Đồng chủ nhiệm
+                    </span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        Thời gian: 2021–2023
+                    </span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Nguồn tài trợ: Đề tài cấp tỉnh
+                    </span>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <h4>Ứng dụng công nghệ số trong quản trị tồn kho và vận tải cho doanh nghiệp xăng dầu ven biển</h4>
+                <div class="project-meta">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        Vai trò: Thành viên chính
+                    </span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        Thời gian: 2019–2021
+                    </span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Nguồn tài trợ: Doanh nghiệp
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Lời mời hợp tác -->
+            <div class="collaboration-invite">
+                <h3>Cơ hội hợp tác</h3>
+                <p>Tôi sẵn sàng hợp tác nghiên cứu và tư vấn trong các lĩnh vực Xăng dầu, kinh doanh – du lịch tại đặc khu Phú Quốc, Công nghệ thực phẩm, logistics, quản lý chuỗi cung ứng, phát triển bền vững nông nghiệp – du lịch và chuyển đổi số trong logistics. Các tổ chức, doanh nghiệp và đồng nghiệp quan tâm có thể liên hệ để trao đổi thêm về cơ hội hợp tác đầu tư, nghiên cứu, đào tạo và chuyển giao.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PHẦN LIÊN HỆ ===== -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Liên hệ</h2>
+            
+            <div class="contact-wrapper">
+                <!-- Thông tin liên hệ -->
+                <div class="contact-info">
+                    <h3>Thông tin liên hệ</h3>
+                    
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        <div>
+                            <strong>Họ tên</strong>
+                            TS. Nguyễn Mạnh Ngọc Bảo
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                        <div>
+                            <strong>Đơn vị</strong>
+                            Công ty TNHH MTV An Bảo Đặc khu Phú Quốc<br>
+                            Khoa Khoa học Ứng dụng và Công nghệ, Trường Đại học Nguyễn Tất Thành Việt Nam
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <div>
+                            <strong>Địa chỉ cơ quan</strong>
+                            Tổ 1, khu phố Xóm Mới, Đặc khu Phú Quốc, tỉnh Kiên Giang
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <div>
+                            <strong>Email</strong>
+                            <a href="mailto:manhbaopetrol@gmail.com">manhbaopetrol@gmail.com</a><br>
+                            <a href="mailto:nmnbao@ntt.edu.vn">nmnbao@ntt.edu.vn</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                        <div>
+                            <strong>Điện thoại (công việc)</strong>
+                            (+84) 038 2345676
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form liên hệ -->
+                <div class="contact-form">
+                    <h3>Gửi thông điệp</h3>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Họ và tên</label>
+                            <input type="text" id="name" name="name" required placeholder="Nhập họ và tên của bạn">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Nhập địa chỉ email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Tiêu đề</label>
+                            <input type="text" id="subject" name="subject" required placeholder="Nhập tiêu đề">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Nội dung</label>
+                            <textarea id="message" name="message" required placeholder="Nhập nội dung thông điệp..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Gửi thông điệp</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TS. Nguyễn Mạnh Ngọc Bảo. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-      const iframe = document.getElementById("preview-iframe");
-      iframe.addEventListener("load", () => iframe.focus());
-
-      document.addEventListener("DOMContentLoaded", () => {
-        if (!hasStorageKey("code_reported") || !hasStorageKey("survey_completed")) {
-          document.querySelector(".report-content-btn").style.display = "block";
+        // Toggle menu mobile
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
         }
-      });
 
-      function onCodePreviewBannerCTAClicked(event) {
-        posthog?.capture?.("code_preview_banner_cta_clicked");
-      }
+        // Đóng menu khi click vào link (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.getElementById('navLinks');
+                navLinks.classList.remove('active');
+            });
+        });
 
-      function reportContent(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        if (!posthog || !posthog.capture || !posthog.setPersonProperties || !posthog.displaySurvey) return;
-
-        if (!hasStorageKey("survey_completed")) {
-          posthog.setPersonProperties?.({
-            last_reported_message_id: MESSAGE_ID,
-            last_report_timestamp: Date.now(),
-          });
-          posthog.displaySurvey?.(REPORT_SURVEY_ID, {
-            ignoreConditions: true,
-            ignoreDelay: true,
-          });
+        // Xử lý form submit (chỉ demo, không có backend)
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Hiển thị thông báo (demo)
+            alert(`Cảm ơn ${name}!\n\nThông điệp của bạn đã được ghi nhận.\nChúng tôi sẽ phản hồi qua email: ${email}`);
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
         }
-      }
 
-      function dismissBanner(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        posthog?.capture?.("code_preview_banner_dismiss");
-
-        const banner = document.getElementById("floating-banner");
-        banner.classList.add("dismissed");
-        setTimeout(() => banner.remove(), 300);
-      }
+        // Hiệu ứng header khi scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.12)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.08)';
+            }
+        });
     </script>
-    <script
-      defer
-      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
-      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
-      data-cf-beacon='{"version":"2024.11.0","token":"cfb6543e268d4ceb92c8170675caa481","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
-      crossorigin="anonymous"
-    ></script>
-  </body>
+
+</body>
 </html>
